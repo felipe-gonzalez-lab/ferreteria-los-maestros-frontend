@@ -1,28 +1,16 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
+import Encabezado from './components/Encabezado'
+import PiePagina from './components/PiePagina'
+import Navegacion from './components/Navegacion'
 
 function App() {
   return (
     <div className="min-vh-100 bg-light text-dark">
-      <header className="bg-dark text-white py-3">
-        <div className="container">
-          <h1 className="h3 mb-0">Ferretería Los Maestros</h1>
-        </div>
-      </header>
+      <Encabezado />
 
-      <nav className="navbar navbar-expand-lg bg-white border-bottom">
-        <div className="container">
-          <span className="navbar-brand">Los Maestros</span>
-
-          <div className="d-flex flex-wrap gap-3">
-            <a className="nav-link" href="#inicio">Inicio</a>
-            <a className="nav-link" href="#productos">Productos</a>
-            <a className="nav-link" href="#nosotros">Nosotros</a>
-            <a className="nav-link" href="#contacto">Contacto</a>
-          </div>
-        </div>
-      </nav>
+      <Navegacion />
 
       <main className="container py-5">
         <section id="inicio" className="mb-5">
@@ -55,11 +43,7 @@ function App() {
         </section>
       </main>
 
-      <footer className="bg-dark text-white text-center py-3">
-        <p className="mb-0">
-          © 2026 Ferretería Los Maestros
-        </p>
-      </footer>
+      <PiePagina />
     </div>
   )
 }
