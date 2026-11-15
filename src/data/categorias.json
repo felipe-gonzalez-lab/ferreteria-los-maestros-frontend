@@ -1,0 +1,126 @@
+[
+  {
+    "categoria": "Materiales de Construcción",
+    "subcategorias": [
+      "Cementos",
+      "morteros",
+      "áridos",
+      "ladrillos",
+      "bloques",
+      "yeso",
+      "Volcanita"
+    ],
+    "referenciasAprox": 110
+  },
+  {
+    "categoria": "Pinturas y Recubrimientos",
+    "subcategorias": [
+      "Látex",
+      "esmalte",
+      "barniz",
+      "antihumedad",
+      "accesorios de pintura"
+    ],
+    "referenciasAprox": 80
+  },
+  {
+    "categoria": "Herramientas Manuales",
+    "subcategorias": [
+      "Martillos",
+      "alicates",
+      "destornilladores",
+      "llaves",
+      "sierras",
+      "niveles"
+    ],
+    "referenciasAprox": 90
+  },
+  {
+    "categoria": "Herramientas Eléctricas",
+    "subcategorias": [
+      "Taladros",
+      "amoladoras",
+      "sierras",
+      "lijadoras",
+      "atornilladoras"
+    ],
+    "referenciasAprox": 50
+  },
+  {
+    "categoria": "Gasfitería",
+    "subcategorias": [
+      "Tuberías PVC/cobre",
+      "uniones",
+      "llaves",
+      "grifería",
+      "sellos"
+    ],
+    "referenciasAprox": 120
+  },
+  {
+    "categoria": "Electricidad",
+    "subcategorias": [
+      "Conductores",
+      "enchufes",
+      "interruptores",
+      "tableros",
+      "iluminación LED"
+    ],
+    "referenciasAprox": 100
+  },
+  {
+    "categoria": "Tornillería y Fijaciones",
+    "subcategorias": [
+      "Tornillos",
+      "tacos",
+      "pernos",
+      "anclajes",
+      "remaches",
+      "silicona"
+    ],
+    "referenciasAprox": 80
+  },
+  {
+    "categoria": "Madera y Tableros",
+    "subcategorias": [
+      "Pino",
+      "roble",
+      "terciado",
+      "MDF",
+      "OSB",
+      "Volcanita"
+    ],
+    "referenciasAprox": 50
+  },
+  {
+    "categoria": "Seguridad y EPP",
+    "subcategorias": [
+      "Cascos",
+      "guantes",
+      "antiparras",
+      "mascarillas",
+      "arneses"
+    ],
+    "referenciasAprox": 30
+  },
+  {
+    "categoria": "Jardín y Exterior",
+    "subcategorias": [
+      "Mangueras",
+      "herramientas de jardín",
+      "riego"
+    ],
+    "referenciasAprox": 30
+  },
+  {
+    "categoria": "Varios / Ferretería general",
+    "subcategorias": [
+      "Adhesivos",
+      "lubricantes",
+      "ligas",
+      "plástico",
+      "impermeabilizantes"
+    ],
+    "referenciasAprox": 60
+  }
+]
