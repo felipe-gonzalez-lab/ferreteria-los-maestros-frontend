@@ -1,3 +1,6 @@
+
+import { NavLink } from 'react-router-dom'
+
 function Navegacion() {
   return (
     <nav className="navbar navbar-expand-lg bg-white border-bottom">
@@ -5,10 +8,21 @@ function Navegacion() {
         <span className="navbar-brand">Los Maestros</span>
 
         <div className="d-flex flex-wrap gap-3">
-          <a className="nav-link" href="#inicio">Inicio</a>
-          <a className="nav-link" href="#productos">Productos</a>
-          <a className="nav-link" href="#nosotros">Nosotros</a>
-          <a className="nav-link" href="#contacto">Contacto</a>
+          <NavLink className="nav-link" to="/">
+            Inicio
+          </NavLink>
+
+          <NavLink className="nav-link" to="/productos">
+            Productos
+          </NavLink>
+
+          <NavLink className="nav-link" to="/nosotros">
+            Nosotros
+          </NavLink>
+
+          <NavLink className="nav-link" to="/contacto">
+            Contacto
+          </NavLink>
         </div>
       </div>
     </nav>
