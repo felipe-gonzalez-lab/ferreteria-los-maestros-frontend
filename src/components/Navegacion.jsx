@@ -23,6 +23,11 @@ function Navegacion() {
           <NavLink className="nav-link" to="/contacto">
             Contacto
           </NavLink>
+
+          <NavLink className="nav-link" to="/carrito">
+            Carrito
+          </NavLink>
+
         </div>
       </div>
     </nav>
@@ -30,3 +35,18 @@ function Navegacion() {
 }
 
 export default Navegacion
+
+
+
+/*
+ * Navegacion.jsx - Barra de navegación de Ferretería Los Maestros.
+ *
+ * Muestra los enlaces que permiten al usuario desplazarse
+ * entre las distintas páginas del sitio web.
+ *
+ * Utiliza NavLink de React Router para navegar sin recargar
+ * completamente la página y reconocer la ruta activa.
+ *
+ * Es un componente reutilizable que se integra en App.jsx,
+ * donde se encuentran definidas las rutas de la aplicación.
+ */
