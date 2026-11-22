@@ -1,5 +1,5 @@
 
-function Carrito({ carrito, eliminarDelCarrito, modificarCantidad }) {
+function Carrito({ carrito, eliminarDelCarrito, modificarCantidad, vaciarCarrito }) {
   const total = carrito.reduce(
     (acumulador, producto) =>
       acumulador + producto.precioVenta * producto.cantidad,
@@ -87,8 +87,20 @@ function Carrito({ carrito, eliminarDelCarrito, modificarCantidad }) {
             </table>
           </div>
 
-          <div className="text-end mt-4">
-            <h3>
+          <div className="d-flex flex-wrap justify-content-between align-items-center gap-3 mt-4">
+            <button
+              type="button"
+              className="btn btn-outline-danger"
+              onClick={() => {
+                if (window.confirm('¿Estás seguro de que deseas vaciar el carrito?')) {
+                  vaciarCarrito()
+                }
+              }}
+            >
+              Vaciar carrito
+            </button>
+
+            <h3 className="mb-0">
               Total: ${total.toLocaleString('es-CL')}
             </h3>
           </div>

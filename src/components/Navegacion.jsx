@@ -1,7 +1,12 @@
 
 import { NavLink } from 'react-router-dom'
 
-function Navegacion() {
+function Navegacion({ carrito }) {
+  const cantidadCarrito = carrito.reduce(
+    (total, producto) => total + producto.cantidad,
+    0
+  )
+
   return (
     <nav className="navbar navbar-expand-lg bg-white border-bottom">
       <div className="container">
@@ -25,9 +30,8 @@ function Navegacion() {
           </NavLink>
 
           <NavLink className="nav-link" to="/carrito">
-            Carrito
+            Carrito ({cantidadCarrito})
           </NavLink>
-
         </div>
       </div>
     </nav>
@@ -35,8 +39,6 @@ function Navegacion() {
 }
 
 export default Navegacion
-
-
 
 /*
  * Navegacion.jsx - Barra de navegación de Ferretería Los Maestros.

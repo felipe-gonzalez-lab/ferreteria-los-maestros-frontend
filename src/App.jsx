@@ -1,6 +1,6 @@
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 import Encabezado from './components/Encabezado'
@@ -11,7 +11,19 @@ import Productos from './pages/Productos'
 import Carrito from './pages/Carrito'
 
 function App() {
-  const [carrito, setCarrito] = useState([])
+  const [carrito, setCarrito] = useState(() => {
+    try {
+      const carritoGuardado = localStorage.getItem('carritoFerreteria')
+      return carritoGuardado ? JSON.parse(carritoGuardado) : []
+    } catch {
+      return []
+    }
+  })
+
+  useEffect(() => {
+    localStorage.setItem('carritoFerreteria', JSON.stringify(carrito))
+  }, [carrito])
+
   const agregarAlCarrito = (producto) => {
     setCarrito((carritoActual) => {
       const productoExistente = carritoActual.find(
@@ -19,11 +31,19 @@ function App() {
       )
 
       if (productoExistente) {
+        if (productoExistente.cantidad >= producto.stock) {
+          return carritoActual
+        }
+
         return carritoActual.map((item) =>
           item.codigo === producto.codigo
             ? { ...item, cantidad: item.cantidad + 1 }
             : item
         )
+      }
+
+      if (producto.stock <= 0) {
+        return carritoActual
       }
 
       return [...carritoActual, { ...producto, cantidad: 1 }]
@@ -34,6 +54,10 @@ function App() {
     setCarrito((carritoActual) =>
       carritoActual.filter((producto) => producto.codigo !== codigo)
     )
+  }
+
+  const vaciarCarrito = () => {
+    setCarrito([])
   }
 
   const modificarCantidad = (codigo, cambio) => {
@@ -52,13 +76,13 @@ function App() {
         return { ...producto, cantidad: nuevaCantidad }
       })
     )
-}
+  }
 
   return (
     <BrowserRouter>
       <div className="min-vh-100 bg-light text-dark">
         <Encabezado />
-        <Navegacion />
+        <Navegacion carrito={carrito} />
 
         <Routes>
           <Route path="/" element={<Inicio />} />
@@ -77,10 +101,10 @@ function App() {
                 carrito={carrito}
                 eliminarDelCarrito={eliminarDelCarrito}
                 modificarCantidad={modificarCantidad}
+                vaciarCarrito={vaciarCarrito}
               />
             }
           />
-          
         </Routes>
 
         <PiePagina />
