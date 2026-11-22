@@ -4,7 +4,7 @@ import productosIniciales from '../data/productos.json'
 import categorias from '../data/categorias.json'
 import TarjetaProducto from '../components/TarjetaProducto'
 
-function Productos() {
+function Productos({ agregarAlCarrito }) {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Todas')
   const [busqueda, setBusqueda] = useState('')
 
@@ -100,6 +100,7 @@ function Productos() {
             <TarjetaProducto
               key={producto.codigo}
               producto={producto}
+              agregarAlCarrito={agregarAlCarrito}
             />
           ))}
         </div>

@@ -1,7 +1,7 @@
 
 import BadgeStock from './BadgeStock'
 
-function TarjetaProducto({ producto }) {
+function TarjetaProducto({ producto, agregarAlCarrito }) {
   return (
     <div className="col-12 col-md-6 col-lg-4">
       <div className="card h-100">
@@ -27,13 +27,18 @@ function TarjetaProducto({ producto }) {
           </p>
 
           <p className="card-text">
-          <BadgeStock
-            stock={producto.stock}
-            stockMinimo={producto.stockMinimo}
-          />
+            <BadgeStock
+              stock={producto.stock}
+              stockMinimo={producto.stockMinimo}
+            />
           </p>
 
-          <button className="btn btn-primary" disabled>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => agregarAlCarrito(producto)}
+            disabled={producto.stock === 0}
+          >
             Añadir al carrito
           </button>
         </div>
