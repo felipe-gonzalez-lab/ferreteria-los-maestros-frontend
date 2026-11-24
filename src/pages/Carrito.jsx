@@ -1,4 +1,6 @@
 
+import { Link } from 'react-router-dom'
+
 function Carrito({ carrito, eliminarDelCarrito, modificarCantidad, vaciarCarrito }) {
   const total = carrito.reduce(
     (acumulador, producto) =>
@@ -104,6 +106,12 @@ function Carrito({ carrito, eliminarDelCarrito, modificarCantidad, vaciarCarrito
               Total: ${total.toLocaleString('es-CL')}
             </h3>
           </div>
+
+          <div className="d-flex justify-content-end mt-4">
+            <Link to="/checkout" className="btn btn-primary">
+              Finalizar compra
+            </Link>
+          </div>
         </>
       )}
     </main>
@@ -111,3 +119,28 @@ function Carrito({ carrito, eliminarDelCarrito, modificarCantidad, vaciarCarrito
 }
 
 export default Carrito
+
+/*
+ * Carrito.jsx - Página del carrito de compras.
+ *
+ * Muestra los productos agregados al carrito,
+ * sus precios, cantidades y subtotales.
+ *
+ * Permite aumentar o disminuir cantidades,
+ * respetando el stock disponible.
+ *
+ * Permite eliminar productos individualmente
+ * o vaciar completamente el carrito con confirmación.
+ *
+ * Calcula automáticamente el total de la compra.
+ *
+ * Incorpora el botón Finalizar compra, que utiliza
+ * Link de React Router para navegar a /checkout
+ * sin recargar completamente la página.
+ *
+ * El botón solamente aparece cuando el carrito
+ * contiene productos.
+ *
+ * La confirmación definitiva del pedido
+ * se implementará en los siguientes pasos.
+ */

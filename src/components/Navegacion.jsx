@@ -36,7 +36,14 @@ function Navegacion({ carrito }) {
           <NavLink className="nav-link" to="/administrar-productos">
             Administrar productos
           </NavLink>
-          
+
+          <NavLink className="nav-link" to="/registro">
+            Registrarse
+          </NavLink>
+
+          <NavLink className="nav-link" to="/login">
+            Iniciar sesión
+          </NavLink>
         </div>
       </div>
     </nav>
@@ -53,6 +60,14 @@ export default Navegacion
  *
  * Utiliza NavLink de React Router para navegar sin recargar
  * completamente la página y reconocer la ruta activa.
+ *
+ * Muestra la cantidad total de unidades agregadas al carrito.
+ *
+ * Incorpora el enlace Registrarse, que permite acceder
+ * al formulario de registro de usuarios.
+ *
+ * Incorpora el enlace Iniciar sesión, que permite acceder
+ * al formulario de login de demostración.
  *
  * Es un componente reutilizable que se integra en App.jsx,
  * donde se encuentran definidas las rutas de la aplicación.

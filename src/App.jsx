@@ -10,6 +10,10 @@ import Inicio from './pages/Inicio'
 import Productos from './pages/Productos'
 import Carrito from './pages/Carrito'
 import AdministrarProductos from './pages/AdministrarProductos'
+import Registro from './pages/Registro'
+import Login from './pages/Login'
+import Checkout from './pages/Checkout'
+import CompraExitosa from './pages/CompraExitosa'
 import productosIniciales from './data/productos.json'
 
 function App() {
@@ -165,6 +169,47 @@ function App() {
     )
   }
 
+  const confirmarPedido = (pedido) => {
+    if (carrito.length === 0) {
+      return false
+    }
+
+    try {
+      const pedidosGuardados = localStorage.getItem('pedidosFerreteria')
+
+      const pedidos = pedidosGuardados
+        ? JSON.parse(pedidosGuardados)
+        : []
+
+      if (!Array.isArray(pedidos)) {
+        return false
+      }
+
+      const pedidoConfirmado = {
+        ...pedido,
+        id: crypto.randomUUID(),
+        fecha: new Date().toISOString(),
+        estado: 'confirmado'
+      }
+
+      localStorage.setItem(
+        'pedidosFerreteria',
+        JSON.stringify([...pedidos, pedidoConfirmado])
+      )
+
+      localStorage.setItem(
+        'ultimoPedidoFerreteria',
+        JSON.stringify(pedidoConfirmado)
+      )
+
+      setCarrito([])
+
+      return true
+    } catch {
+      return false
+    }
+  }
+
   return (
     <BrowserRouter>
       <div className="min-vh-100 bg-light text-dark">
@@ -207,6 +252,25 @@ function App() {
               />
             }
           />
+
+          <Route path="/registro" element={<Registro />} />
+
+          <Route path="/login" element={<Login />} />
+
+          <Route
+            path="/checkout"
+            element={
+              <Checkout
+                carrito={carrito}
+                confirmarPedido={confirmarPedido}
+              />
+            }
+          />
+
+          <Route
+            path="/compra-exitosa"
+            element={<CompraExitosa />}
+          />
         </Routes>
 
         <PiePagina />
@@ -220,40 +284,41 @@ export default App
 /*
  * App.jsx - Componente principal de Ferretería Los Maestros.
  *
- * Organiza la estructura general del sitio web, integrando
- * el encabezado, la navegación, las páginas y el pie de página.
- *
- * Utiliza React Router para gestionar las rutas y permitir
- * la navegación sin recargar completamente la página.
+ * Organiza la estructura general del sitio web mediante
+ * React Router, componentes y diferentes páginas.
  *
  * Administra los estados de productos y carrito.
  *
- * Implementa las operaciones CRUD del catálogo:
- * agregar, consultar, actualizar y eliminar productos.
+ * Implementa las operaciones CRUD de productos:
+ * agregar, consultar, actualizar y eliminar.
  *
- * Los productos se cargan desde localStorage cuando existen
- * datos guardados previamente.
+ * Mantiene sincronizada la información del catálogo
+ * con los productos que se encuentran en el carrito.
  *
- * Si no hay productos guardados, se utiliza el catálogo
- * inicial del archivo productos.json.
+ * Los productos y el carrito utilizan localStorage
+ * para conservar sus datos al recargar la aplicación.
  *
- * Cada modificación del catálogo se guarda automáticamente
- * en localStorage mediante useEffect.
+ * Incorpora las páginas de registro de usuarios,
+ * inicio de sesión de demostración y checkout.
  *
- * Cuando se actualiza un producto, también se actualiza
- * su información en el carrito, incluyendo precio y stock.
+ * La función confirmarPedido recibe los datos
+ * del formulario de checkout.
  *
- * Si el nuevo stock es menor que la cantidad del carrito,
- * se ajusta la cantidad al máximo disponible.
+ * Registra cada pedido simulado en localStorage,
+ * asignándole un identificador, una fecha y un estado.
  *
- * Si el stock llega a cero, el producto se retira del carrito.
+ * También guarda el último pedido confirmado
+ * para mostrar posteriormente su resumen.
  *
- * Cuando se elimina un producto del catálogo, también
- * se elimina del carrito.
+ * Si el pedido se registra correctamente,
+ * se vacía el carrito de compras.
  *
- * El carrito también utiliza localStorage para conservar
- * su contenido al recargar la página.
+ * Incorpora la ruta /compra-exitosa para mostrar
+ * los datos del último pedido registrado.
  *
- * App.jsx coordina los componentes y las vistas
- * que conforman la aplicación.
+ * La navegación automática hacia esa página
+ * se implementará desde Checkout.jsx.
+ *
+ * No se procesan pagos reales ni se envían
+ * pedidos a un servidor.
  */
