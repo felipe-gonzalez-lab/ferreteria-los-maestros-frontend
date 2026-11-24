@@ -32,6 +32,11 @@ function Navegacion({ carrito }) {
           <NavLink className="nav-link" to="/carrito">
             Carrito ({cantidadCarrito})
           </NavLink>
+
+          <NavLink className="nav-link" to="/administrar-productos">
+            Administrar productos
+          </NavLink>
+          
         </div>
       </div>
     </nav>

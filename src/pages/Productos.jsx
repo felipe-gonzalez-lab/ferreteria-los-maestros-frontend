@@ -1,14 +1,13 @@
 
 import { useState } from 'react'
-import productosIniciales from '../data/productos.json'
 import categorias from '../data/categorias.json'
 import TarjetaProducto from '../components/TarjetaProducto'
 
-function Productos({ agregarAlCarrito }) {
+function Productos({ productos, agregarAlCarrito }) {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Todas')
   const [busqueda, setBusqueda] = useState('')
 
-  const productosFiltrados = productosIniciales.filter((producto) => {
+  const productosFiltrados = productos.filter((producto) => {
     const coincideCategoria =
       categoriaSeleccionada === 'Todas' ||
       producto.categoria === categoriaSeleccionada
