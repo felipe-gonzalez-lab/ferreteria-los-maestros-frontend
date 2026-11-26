@@ -1,6 +1,7 @@
 
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { calcularPrecioFinal } from '../utils/precios'
 
 const datosIniciales = {
   nombre: '',
@@ -22,7 +23,7 @@ function Checkout({ carrito = [], confirmarPedido }) {
 
   const total = carrito.reduce(
     (acumulado, producto) =>
-      acumulado + producto.precioVenta * producto.cantidad,
+      acumulado + calcularPrecioFinal(producto) * producto.cantidad,
     0
   )
 
@@ -90,13 +91,19 @@ function Checkout({ carrito = [], confirmarPedido }) {
         codigo: producto.codigo,
         nombre: producto.nombre,
         cantidad: producto.cantidad,
-        precioVenta: producto.precioVenta
+        precioVenta: calcularPrecioFinal(producto),
+        precioOriginal: producto.precioVenta,
+        descuento:
+          Number(producto.descuento) > 0 &&
+          Number(producto.descuento) <= 100
+            ? Number(producto.descuento)
+            : 0
       })),
       total
     }
 
     if (typeof confirmarPedido !== 'function') {
-      setMensaje('No fue posible procesar el pedido.')
+      navigate('/compra-fallida', { replace: true })
       return
     }
 
@@ -108,14 +115,10 @@ function Checkout({ carrito = [], confirmarPedido }) {
       if (confirmado) {
         navigate('/compra-exitosa', { replace: true })
       } else {
-        setMensaje(
-          'No fue posible registrar el pedido. Intenta nuevamente.'
-        )
+        navigate('/compra-fallida', { replace: true })
       }
     } catch {
-      setMensaje(
-        'Ocurrió un error al confirmar el pedido. Intenta nuevamente.'
-      )
+      navigate('/compra-fallida', { replace: true })
     } finally {
       setProcesando(false)
     }
@@ -339,19 +342,45 @@ function Checkout({ carrito = [], confirmarPedido }) {
                     </thead>
 
                     <tbody>
-                      {carrito.map((producto) => (
-                        <tr key={producto.codigo}>
-                          <td>{producto.nombre}</td>
-                          <td>{producto.cantidad}</td>
-                          <td className="text-end">
-                            $
-                            {(
-                              producto.precioVenta *
-                              producto.cantidad
-                            ).toLocaleString('es-CL')}
-                          </td>
-                        </tr>
-                      ))}
+                      {carrito.map((producto) => {
+                        const descuento = Number(producto.descuento) || 0
+
+                        const tieneDescuento =
+                          descuento > 0 && descuento <= 100
+
+                        const precioFinal = calcularPrecioFinal(producto)
+
+                        return (
+                          <tr key={producto.codigo}>
+                            <td>
+                              {producto.nombre}
+
+                              {tieneDescuento && (
+                                <div className="mt-1">
+                                  <span className="badge bg-danger">
+                                    {descuento}% descuento
+                                  </span>
+
+                                  <div className="small text-muted text-decoration-line-through">
+                                    ${producto.precioVenta.toLocaleString('es-CL')}
+                                  </div>
+
+                                  <div className="small text-success fw-bold">
+                                    ${precioFinal.toLocaleString('es-CL')} c/u
+                                  </div>
+                                </div>
+                              )}
+                            </td>
+
+                            <td>{producto.cantidad}</td>
+
+                            <td className="text-end">
+                              ${(precioFinal * producto.cantidad)
+                                .toLocaleString('es-CL')}
+                            </td>
+                          </tr>
+                        )
+                      })}
                     </tbody>
                   </table>
                 </div>
@@ -389,28 +418,28 @@ export default Checkout
  * Permite elegir entre despacho a domicilio
  * y retiro en tienda.
  *
- * Cuando se selecciona despacho, solicita
- * dirección y comuna.
+ * Valida los datos del cliente y los campos
+ * correspondientes al tipo de entrega.
  *
- * Muestra los productos agregados al carrito,
- * sus cantidades, subtotales y total.
+ * Importa calcularPrecioFinal desde utils/precios.js.
  *
- * Utiliza useState para manejar los campos,
- * los mensajes de validación y el procesamiento.
+ * Utiliza la función compartida para calcular
+ * los subtotales y el total del pedido.
  *
- * Prepara un objeto con los datos del pedido
- * y lo envía a confirmarPedido de App.jsx.
+ * Muestra el precio original y el promocional
+ * cuando un producto tiene descuento.
+ *
+ * Al registrar el pedido, conserva el precio
+ * original, el descuento y el precio final aplicado.
  *
  * Si el pedido se registra correctamente,
- * utiliza useNavigate de React Router para
- * redirigir a la página /compra-exitosa.
+ * redirige a /compra-exitosa.
  *
- * Si ocurre un error al registrar el pedido,
- * muestra un mensaje y permanece en Checkout.
+ * Si ocurre un error durante el registro,
+ * redirige a /compra-fallida.
  *
- * Deshabilita el botón durante el procesamiento
- * para evitar confirmaciones repetidas.
+ * El carrito solo se vacía cuando App.jsx
+ * registra correctamente el pedido.
  *
- * No procesa pagos reales ni envía información
- * a un servidor.
+ * No procesa pagos reales ni utiliza un servidor.
  */

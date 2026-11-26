@@ -9,7 +9,8 @@
     "precioCompra": 3200,
     "precioVenta": 5990,
     "stock": 80,
-    "stockMinimo": 20
+    "stockMinimo": 20,
+    "descuento": 10
   },
   {
     "codigo": "MC002",
@@ -21,7 +22,8 @@
     "precioCompra": 4100,
     "precioVenta": 7490,
     "stock": 40,
-    "stockMinimo": 10
+    "stockMinimo": 10,
+    "descuento": 0
   },
   {
     "codigo": "MC003",
@@ -33,7 +35,8 @@
     "precioCompra": 2800,
     "precioVenta": 5200,
     "stock": 50,
-    "stockMinimo": 15
+    "stockMinimo": 15,
+    "descuento": 0
   },
   {
     "codigo": "MC004",
@@ -45,7 +48,8 @@
     "precioCompra": 3500,
     "precioVenta": 6490,
     "stock": 30,
-    "stockMinimo": 10
+    "stockMinimo": 10,
+    "descuento": 0
   },
   {
     "codigo": "MC005",
@@ -57,7 +61,8 @@
     "precioCompra": 800,
     "precioVenta": 1800,
     "stock": 60,
-    "stockMinimo": 20
+    "stockMinimo": 20,
+    "descuento": 0
   },
   {
     "codigo": "MC006",
@@ -69,7 +74,8 @@
     "precioCompra": 700,
     "precioVenta": 1500,
     "stock": 60,
-    "stockMinimo": 20
+    "stockMinimo": 20,
+    "descuento": 0
   },
   {
     "codigo": "MC007",
@@ -81,7 +87,8 @@
     "precioCompra": 190,
     "precioVenta": 380,
     "stock": 500,
-    "stockMinimo": 100
+    "stockMinimo": 100,
+    "descuento": 0
   },
   {
     "codigo": "MC008",
@@ -93,7 +100,8 @@
     "precioCompra": 280,
     "precioVenta": 550,
     "stock": 300,
-    "stockMinimo": 80
+    "stockMinimo": 80,
+    "descuento": 0
   },
   {
     "codigo": "MC009",
@@ -105,7 +113,8 @@
     "precioCompra": 620,
     "precioVenta": 1200,
     "stock": 200,
-    "stockMinimo": 50
+    "stockMinimo": 50,
+    "descuento": 0
   },
   {
     "codigo": "MC010",
@@ -117,7 +126,8 @@
     "precioCompra": 890,
     "precioVenta": 1690,
     "stock": 100,
-    "stockMinimo": 30
+    "stockMinimo": 30,
+    "descuento": 0
   },
   {
     "codigo": "PT001",
@@ -129,7 +139,8 @@
     "precioCompra": 5200,
     "precioVenta": 9990,
     "stock": 40,
-    "stockMinimo": 10
+    "stockMinimo": 10,
+    "descuento": 15
   },
   {
     "codigo": "PT002",
@@ -141,7 +152,8 @@
     "precioCompra": 6800,
     "precioVenta": 12990,
     "stock": 30,
-    "stockMinimo": 8
+    "stockMinimo": 8,
+    "descuento": 0
   },
   {
     "codigo": "PT003",
@@ -153,7 +165,8 @@
     "precioCompra": 7200,
     "precioVenta": 13990,
     "stock": 25,
-    "stockMinimo": 8
+    "stockMinimo": 8,
+    "descuento": 0
   },
   {
     "codigo": "PT004",
@@ -165,7 +178,8 @@
     "precioCompra": 2100,
     "precioVenta": 4290,
     "stock": 50,
-    "stockMinimo": 15
+    "stockMinimo": 15,
+    "descuento": 0
   },
   {
     "codigo": "PT005",
@@ -177,7 +191,8 @@
     "precioCompra": 4800,
     "precioVenta": 9490,
     "stock": 30,
-    "stockMinimo": 10
+    "stockMinimo": 10,
+    "descuento": 0
   },
   {
     "codigo": "PT006",
@@ -189,7 +204,8 @@
     "precioCompra": 9500,
     "precioVenta": 17990,
     "stock": 15,
-    "stockMinimo": 5
+    "stockMinimo": 5,
+    "descuento": 0
   },
   {
     "codigo": "PT007",
@@ -201,7 +217,8 @@
     "precioCompra": 1900,
     "precioVenta": 3990,
     "stock": 30,
-    "stockMinimo": 10
+    "stockMinimo": 10,
+    "descuento": 0
   },
   {
     "codigo": "PT008",
@@ -213,7 +230,8 @@
     "precioCompra": 800,
     "precioVenta": 1690,
     "stock": 40,
-    "stockMinimo": 10
+    "stockMinimo": 10,
+    "descuento": 0
   },
   {
     "codigo": "PT009",
@@ -225,7 +243,8 @@
     "precioCompra": 1200,
     "precioVenta": 2490,
     "stock": 60,
-    "stockMinimo": 20
+    "stockMinimo": 20,
+    "descuento": 0
   },
   {
     "codigo": "HM001",
@@ -237,7 +256,8 @@
     "precioCompra": 4200,
     "precioVenta": 7990,
     "stock": 20,
-    "stockMinimo": 5
+    "stockMinimo": 5,
+    "descuento": 10
   },
   {
     "codigo": "HM002",
@@ -249,7 +269,8 @@
     "precioCompra": 3800,
     "precioVenta": 7290,
     "stock": 15,
-    "stockMinimo": 5
+    "stockMinimo": 5,
+    "descuento": 0
   },
   {
     "codigo": "HM003",
@@ -261,7 +282,8 @@
     "precioCompra": 900,
     "precioVenta": 1990,
     "stock": 30,
-    "stockMinimo": 10
+    "stockMinimo": 10,
+    "descuento": 0
   },
   {
     "codigo": "HM004",
@@ -273,7 +295,8 @@
     "precioCompra": 900,
     "precioVenta": 1990,
     "stock": 30,
-    "stockMinimo": 10
+    "stockMinimo": 10,
+    "descuento": 0
   },
   {
     "codigo": "HM005",
@@ -285,7 +308,8 @@
     "precioCompra": 4500,
     "precioVenta": 8490,
     "stock": 12,
-    "stockMinimo": 4
+    "stockMinimo": 4,
+    "descuento": 0
   },
   {
     "codigo": "HM006",
@@ -297,7 +321,8 @@
     "precioCompra": 2800,
     "precioVenta": 5490,
     "stock": 15,
-    "stockMinimo": 5
+    "stockMinimo": 5,
+    "descuento": 0
   },
   {
     "codigo": "HM007",
@@ -309,7 +334,8 @@
     "precioCompra": 4900,
     "precioVenta": 9490,
     "stock": 10,
-    "stockMinimo": 3
+    "stockMinimo": 3,
+    "descuento": 0
   },
   {
     "codigo": "HM008",
@@ -321,7 +347,8 @@
     "precioCompra": 5500,
     "precioVenta": 10490,
     "stock": 8,
-    "stockMinimo": 3
+    "stockMinimo": 3,
+    "descuento": 0
   },
   {
     "codigo": "HM009",
@@ -333,7 +360,8 @@
     "precioCompra": 2200,
     "precioVenta": 4290,
     "stock": 25,
-    "stockMinimo": 8
+    "stockMinimo": 8,
+    "descuento": 0
   },
   {
     "codigo": "HM010",
@@ -345,7 +373,8 @@
     "precioCompra": 3200,
     "precioVenta": 6490,
     "stock": 20,
-    "stockMinimo": 6
+    "stockMinimo": 6,
+    "descuento": 0
   },
   {
     "codigo": "HE001",
@@ -357,7 +386,8 @@
     "precioCompra": 42000,
     "precioVenta": 79990,
     "stock": 8,
-    "stockMinimo": 2
+    "stockMinimo": 2,
+    "descuento": 10
   },
   {
     "codigo": "HE002",
@@ -369,7 +399,8 @@
     "precioCompra": 55000,
     "precioVenta": 104990,
     "stock": 5,
-    "stockMinimo": 2
+    "stockMinimo": 2,
+    "descuento": 0
   },
   {
     "codigo": "HE003",
@@ -381,7 +412,8 @@
     "precioCompra": 28000,
     "precioVenta": 54990,
     "stock": 8,
-    "stockMinimo": 2
+    "stockMinimo": 2,
+    "descuento": 0
   },
   {
     "codigo": "HE004",
@@ -393,7 +425,8 @@
     "precioCompra": 38000,
     "precioVenta": 72990,
     "stock": 4,
-    "stockMinimo": 1
+    "stockMinimo": 1,
+    "descuento": 0
   },
   {
     "codigo": "HE005",
@@ -405,7 +438,8 @@
     "precioCompra": 18000,
     "precioVenta": 34990,
     "stock": 6,
-    "stockMinimo": 2
+    "stockMinimo": 2,
+    "descuento": 0
   },
   {
     "codigo": "HE006",
@@ -417,7 +451,8 @@
     "precioCompra": 22000,
     "precioVenta": 42990,
     "stock": 4,
-    "stockMinimo": 1
+    "stockMinimo": 1,
+    "descuento": 0
   },
   {
     "codigo": "GS001",
@@ -429,7 +464,8 @@
     "precioCompra": 2800,
     "precioVenta": 5490,
     "stock": 30,
-    "stockMinimo": 10
+    "stockMinimo": 10,
+    "descuento": 0
   },
   {
     "codigo": "GS002",
@@ -441,7 +477,8 @@
     "precioCompra": 3900,
     "precioVenta": 7490,
     "stock": 25,
-    "stockMinimo": 8
+    "stockMinimo": 8,
+    "descuento": 0
   },
   {
     "codigo": "GS003",
@@ -453,7 +490,8 @@
     "precioCompra": 9500,
     "precioVenta": 17990,
     "stock": 15,
-    "stockMinimo": 5
+    "stockMinimo": 5,
+    "descuento": 0
   },
   {
     "codigo": "GS004",
@@ -465,7 +503,8 @@
     "precioCompra": 180,
     "precioVenta": 390,
     "stock": 100,
-    "stockMinimo": 30
+    "stockMinimo": 30,
+    "descuento": 0
   },
   {
     "codigo": "GS005",
@@ -477,7 +516,8 @@
     "precioCompra": 220,
     "precioVenta": 450,
     "stock": 80,
-    "stockMinimo": 25
+    "stockMinimo": 25,
+    "descuento": 0
   },
   {
     "codigo": "GS006",
@@ -489,7 +529,8 @@
     "precioCompra": 150,
     "precioVenta": 320,
     "stock": 80,
-    "stockMinimo": 25
+    "stockMinimo": 25,
+    "descuento": 0
   },
   {
     "codigo": "GS007",
@@ -501,7 +542,8 @@
     "precioCompra": 1800,
     "precioVenta": 3490,
     "stock": 30,
-    "stockMinimo": 10
+    "stockMinimo": 10,
+    "descuento": 0
   },
   {
     "codigo": "GS008",
@@ -513,7 +555,8 @@
     "precioCompra": 2500,
     "precioVenta": 4990,
     "stock": 20,
-    "stockMinimo": 8
+    "stockMinimo": 8,
+    "descuento": 0
   },
   {
     "codigo": "GS009",
@@ -525,7 +568,8 @@
     "precioCompra": 12000,
     "precioVenta": 22990,
     "stock": 10,
-    "stockMinimo": 3
+    "stockMinimo": 3,
+    "descuento": 0
   },
   {
     "codigo": "GS010",
@@ -537,7 +581,8 @@
     "precioCompra": 15000,
     "precioVenta": 28990,
     "stock": 8,
-    "stockMinimo": 2
+    "stockMinimo": 2,
+    "descuento": 0
   },
   {
     "codigo": "GS011",
@@ -549,7 +594,8 @@
     "precioCompra": 350,
     "precioVenta": 790,
     "stock": 80,
-    "stockMinimo": 25
+    "stockMinimo": 25,
+    "descuento": 0
   },
   {
     "codigo": "GS012",
@@ -561,7 +607,8 @@
     "precioCompra": 2800,
     "precioVenta": 5490,
     "stock": 25,
-    "stockMinimo": 8
+    "stockMinimo": 8,
+    "descuento": 0
   },
   {
     "codigo": "EL001",
@@ -573,7 +620,8 @@
     "precioCompra": 290,
     "precioVenta": 590,
     "stock": 100,
-    "stockMinimo": 30
+    "stockMinimo": 30,
+    "descuento": 0
   },
   {
     "codigo": "EL002",
@@ -585,7 +633,8 @@
     "precioCompra": 390,
     "precioVenta": 790,
     "stock": 100,
-    "stockMinimo": 30
+    "stockMinimo": 30,
+    "descuento": 0
   },
   {
     "codigo": "EL003",
@@ -597,7 +646,8 @@
     "precioCompra": 490,
     "precioVenta": 990,
     "stock": 80,
-    "stockMinimo": 25
+    "stockMinimo": 25,
+    "descuento": 0
   },
   {
     "codigo": "EL004",
@@ -609,7 +659,8 @@
     "precioCompra": 1900,
     "precioVenta": 3690,
     "stock": 50,
-    "stockMinimo": 15
+    "stockMinimo": 15,
+    "descuento": 0
   },
   {
     "codigo": "EL005",
@@ -621,7 +672,8 @@
     "precioCompra": 2800,
     "precioVenta": 5490,
     "stock": 40,
-    "stockMinimo": 12
+    "stockMinimo": 12,
+    "descuento": 0
   },
   {
     "codigo": "EL006",
@@ -633,7 +685,8 @@
     "precioCompra": 1600,
     "precioVenta": 3190,
     "stock": 50,
-    "stockMinimo": 15
+    "stockMinimo": 15,
+    "descuento": 0
   },
   {
     "codigo": "EL007",
@@ -645,7 +698,8 @@
     "precioCompra": 2200,
     "precioVenta": 4290,
     "stock": 35,
-    "stockMinimo": 10
+    "stockMinimo": 10,
+    "descuento": 0
   },
   {
     "codigo": "EL008",
@@ -657,7 +711,8 @@
     "precioCompra": 12000,
     "precioVenta": 22990,
     "stock": 8,
-    "stockMinimo": 2
+    "stockMinimo": 2,
+    "descuento": 0
   },
   {
     "codigo": "EL009",
@@ -669,7 +724,8 @@
     "precioCompra": 3200,
     "precioVenta": 6490,
     "stock": 20,
-    "stockMinimo": 5
+    "stockMinimo": 5,
+    "descuento": 0
   },
   {
     "codigo": "EL010",
@@ -681,7 +737,8 @@
     "precioCompra": 3500,
     "precioVenta": 6990,
     "stock": 20,
-    "stockMinimo": 5
+    "stockMinimo": 5,
+    "descuento": 0
   },
   {
     "codigo": "EL011",
@@ -693,7 +750,8 @@
     "precioCompra": 1900,
     "precioVenta": 3990,
     "stock": 60,
-    "stockMinimo": 20
+    "stockMinimo": 20,
+    "descuento": 0
   },
   {
     "codigo": "EL012",
@@ -705,7 +763,8 @@
     "precioCompra": 2200,
     "precioVenta": 4490,
     "stock": 50,
-    "stockMinimo": 15
+    "stockMinimo": 15,
+    "descuento": 0
   },
   {
     "codigo": "EL013",
@@ -717,7 +776,8 @@
     "precioCompra": 5800,
     "precioVenta": 11490,
     "stock": 20,
-    "stockMinimo": 6
+    "stockMinimo": 6,
+    "descuento": 0
   },
   {
     "codigo": "TR001",
@@ -729,7 +789,8 @@
     "precioCompra": 1500,
     "precioVenta": 2990,
     "stock": 40,
-    "stockMinimo": 12
+    "stockMinimo": 12,
+    "descuento": 0
   },
   {
     "codigo": "TR002",
@@ -741,7 +802,8 @@
     "precioCompra": 1200,
     "precioVenta": 2490,
     "stock": 40,
-    "stockMinimo": 12
+    "stockMinimo": 12,
+    "descuento": 0
   },
   {
     "codigo": "TR003",
@@ -753,7 +815,8 @@
     "precioCompra": 1800,
     "precioVenta": 3490,
     "stock": 30,
-    "stockMinimo": 10
+    "stockMinimo": 10,
+    "descuento": 0
   },
   {
     "codigo": "TR004",
@@ -765,7 +828,8 @@
     "precioCompra": 1600,
     "precioVenta": 3190,
     "stock": 35,
-    "stockMinimo": 10
+    "stockMinimo": 10,
+    "descuento": 0
   },
   {
     "codigo": "TR005",
@@ -777,7 +841,8 @@
     "precioCompra": 1400,
     "precioVenta": 2890,
     "stock": 30,
-    "stockMinimo": 10
+    "stockMinimo": 10,
+    "descuento": 0
   },
   {
     "codigo": "TR006",
@@ -789,7 +854,8 @@
     "precioCompra": 120,
     "precioVenta": 290,
     "stock": 200,
-    "stockMinimo": 50
+    "stockMinimo": 50,
+    "descuento": 0
   },
   {
     "codigo": "TR007",
@@ -801,7 +867,8 @@
     "precioCompra": 480,
     "precioVenta": 990,
     "stock": 60,
-    "stockMinimo": 15
+    "stockMinimo": 15,
+    "descuento": 0
   },
   {
     "codigo": "TR008",
@@ -813,7 +880,8 @@
     "precioCompra": 8500,
     "precioVenta": 15990,
     "stock": 8,
-    "stockMinimo": 2
+    "stockMinimo": 2,
+    "descuento": 0
   },
   {
     "codigo": "MD001",
@@ -825,7 +893,8 @@
     "precioCompra": 2100,
     "precioVenta": 4290,
     "stock": 40,
-    "stockMinimo": 12
+    "stockMinimo": 12,
+    "descuento": 0
   },
   {
     "codigo": "MD002",
@@ -837,7 +906,8 @@
     "precioCompra": 3800,
     "precioVenta": 7490,
     "stock": 30,
-    "stockMinimo": 10
+    "stockMinimo": 10,
+    "descuento": 0
   },
   {
     "codigo": "MD003",
@@ -849,7 +919,8 @@
     "precioCompra": 18000,
     "precioVenta": 34990,
     "stock": 20,
-    "stockMinimo": 5
+    "stockMinimo": 5,
+    "descuento": 0
   },
   {
     "codigo": "MD004",
@@ -861,7 +932,8 @@
     "precioCompra": 14000,
     "precioVenta": 27990,
     "stock": 15,
-    "stockMinimo": 4
+    "stockMinimo": 4,
+    "descuento": 0
   },
   {
     "codigo": "MD005",
@@ -873,7 +945,8 @@
     "precioCompra": 9500,
     "precioVenta": 18990,
     "stock": 18,
-    "stockMinimo": 5
+    "stockMinimo": 5,
+    "descuento": 0
   },
   {
     "codigo": "MD006",
@@ -885,7 +958,8 @@
     "precioCompra": 4500,
     "precioVenta": 8990,
     "stock": 30,
-    "stockMinimo": 8
+    "stockMinimo": 8,
+    "descuento": 0
   },
   {
     "codigo": "MD007",
@@ -897,7 +971,8 @@
     "precioCompra": 6200,
     "precioVenta": 11990,
     "stock": 15,
-    "stockMinimo": 4
+    "stockMinimo": 4,
+    "descuento": 0
   },
   {
     "codigo": "SE001",
@@ -909,7 +984,8 @@
     "precioCompra": 3500,
     "precioVenta": 6990,
     "stock": 15,
-    "stockMinimo": 5
+    "stockMinimo": 5,
+    "descuento": 0
   },
   {
     "codigo": "SE002",
@@ -921,7 +997,8 @@
     "precioCompra": 1800,
     "precioVenta": 3690,
     "stock": 20,
-    "stockMinimo": 6
+    "stockMinimo": 6,
+    "descuento": 0
   },
   {
     "codigo": "SE003",
@@ -933,7 +1010,8 @@
     "precioCompra": 1200,
     "precioVenta": 2490,
     "stock": 25,
-    "stockMinimo": 8
+    "stockMinimo": 8,
+    "descuento": 0
   },
   {
     "codigo": "SE004",
@@ -945,7 +1023,8 @@
     "precioCompra": 5500,
     "precioVenta": 10990,
     "stock": 10,
-    "stockMinimo": 3
+    "stockMinimo": 3,
+    "descuento": 0
   },
   {
     "codigo": "SE005",
@@ -957,7 +1036,8 @@
     "precioCompra": 18000,
     "precioVenta": 34990,
     "stock": 4,
-    "stockMinimo": 1
+    "stockMinimo": 1,
+    "descuento": 0
   },
   {
     "codigo": "JA001",
@@ -969,7 +1049,8 @@
     "precioCompra": 12000,
     "precioVenta": 22990,
     "stock": 6,
-    "stockMinimo": 2
+    "stockMinimo": 2,
+    "descuento": 15
   },
   {
     "codigo": "JA002",
@@ -981,7 +1062,8 @@
     "precioCompra": 15000,
     "precioVenta": 28990,
     "stock": 5,
-    "stockMinimo": 2
+    "stockMinimo": 2,
+    "descuento": 0
   },
   {
     "codigo": "JA003",
@@ -993,7 +1075,8 @@
     "precioCompra": 2800,
     "precioVenta": 5490,
     "stock": 10,
-    "stockMinimo": 3
+    "stockMinimo": 3,
+    "descuento": 0
   },
   {
     "codigo": "JA004",
@@ -1005,7 +1088,8 @@
     "precioCompra": 5500,
     "precioVenta": 10990,
     "stock": 8,
-    "stockMinimo": 2
+    "stockMinimo": 2,
+    "descuento": 0
   },
   {
     "codigo": "JA005",
@@ -1017,6 +1101,7 @@
     "precioCompra": 4800,
     "precioVenta": 9490,
     "stock": 6,
-    "stockMinimo": 2
+    "stockMinimo": 2,
+    "descuento": 0
   }
 ]

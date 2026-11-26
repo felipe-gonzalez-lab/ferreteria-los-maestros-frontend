@@ -1,10 +1,11 @@
 
 import { Link } from 'react-router-dom'
+import { calcularPrecioFinal } from '../utils/precios'
 
 function Carrito({ carrito, eliminarDelCarrito, modificarCantidad, vaciarCarrito }) {
   const total = carrito.reduce(
     (acumulador, producto) =>
-      acumulador + producto.precioVenta * producto.cantidad,
+      acumulador + calcularPrecioFinal(producto) * producto.cantidad,
     0
   )
 
@@ -35,56 +36,82 @@ function Carrito({ carrito, eliminarDelCarrito, modificarCantidad, vaciarCarrito
               </thead>
 
               <tbody>
-                {carrito.map((producto) => (
-                  <tr key={producto.codigo}>
-                    <td>{producto.nombre}</td>
+                {carrito.map((producto) => {
+                  const descuento = Number(producto.descuento) || 0
+                  const tieneDescuento =
+                    descuento > 0 && descuento <= 100
 
-                    <td>
-                      ${producto.precioVenta.toLocaleString('es-CL')}
-                    </td>
+                  const precioFinal = calcularPrecioFinal(producto)
 
-                    <td>
-                      <div className="d-flex align-items-center gap-2">
+                  return (
+                    <tr key={producto.codigo}>
+                      <td>
+                        {producto.nombre}
+
+                        {tieneDescuento && (
+                          <div className="mt-1">
+                            <span className="badge bg-danger">
+                              {descuento}% de descuento
+                            </span>
+                          </div>
+                        )}
+                      </td>
+
+                      <td>
+                        {tieneDescuento && (
+                          <div className="text-muted small text-decoration-line-through">
+                            ${producto.precioVenta.toLocaleString('es-CL')}
+                          </div>
+                        )}
+
+                        <span className={tieneDescuento ? 'text-success fw-bold' : ''}>
+                          ${precioFinal.toLocaleString('es-CL')}
+                        </span>
+                      </td>
+
+                      <td>
+                        <div className="d-flex align-items-center gap-2">
+                          <button
+                            type="button"
+                            className="btn btn-outline-secondary btn-sm"
+                            onClick={() => modificarCantidad(producto.codigo, -1)}
+                            disabled={producto.cantidad <= 1}
+                            aria-label={`Disminuir cantidad de ${producto.nombre}`}
+                          >
+                            −
+                          </button>
+
+                          <span>{producto.cantidad}</span>
+
+                          <button
+                            type="button"
+                            className="btn btn-outline-secondary btn-sm"
+                            onClick={() => modificarCantidad(producto.codigo, 1)}
+                            disabled={producto.cantidad >= producto.stock}
+                            aria-label={`Aumentar cantidad de ${producto.nombre}`}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </td>
+
+                      <td>
+                        ${(precioFinal * producto.cantidad)
+                          .toLocaleString('es-CL')}
+                      </td>
+
+                      <td>
                         <button
                           type="button"
-                          className="btn btn-outline-secondary btn-sm"
-                          onClick={() => modificarCantidad(producto.codigo, -1)}
-                          disabled={producto.cantidad <= 1}
-                          aria-label={`Disminuir cantidad de ${producto.nombre}`}
+                          className="btn btn-outline-danger btn-sm"
+                          onClick={() => eliminarDelCarrito(producto.codigo)}
                         >
-                          −
+                          Eliminar
                         </button>
-
-                        <span>{producto.cantidad}</span>
-
-                        <button
-                          type="button"
-                          className="btn btn-outline-secondary btn-sm"
-                          onClick={() => modificarCantidad(producto.codigo, 1)}
-                          disabled={producto.cantidad >= producto.stock}
-                          aria-label={`Aumentar cantidad de ${producto.nombre}`}
-                        >
-                          +
-                        </button>
-                      </div>
-                    </td>
-
-                    <td>
-                      ${(producto.precioVenta * producto.cantidad)
-                        .toLocaleString('es-CL')}
-                    </td>
-
-                    <td>
-                      <button
-                        type="button"
-                        className="btn btn-outline-danger btn-sm"
-                        onClick={() => eliminarDelCarrito(producto.codigo)}
-                      >
-                        Eliminar
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+                      </td>
+                    </tr>
+                  )
+                })}
               </tbody>
             </table>
           </div>
@@ -126,21 +153,28 @@ export default Carrito
  * Muestra los productos agregados al carrito,
  * sus precios, cantidades y subtotales.
  *
- * Permite aumentar o disminuir cantidades,
+ * Importa calcularPrecioFinal desde utils/precios.js
+ * para aplicar los descuentos del catálogo.
+ *
+ * Muestra el porcentaje de descuento y el
+ * precio original tachado cuando corresponde.
+ *
+ * Calcula subtotales y total utilizando
+ * el precio final de cada producto.
+ *
+ * Los productos sin descuento mantienen
+ * sus precios habituales.
+ *
+ * Permite aumentar y disminuir cantidades
  * respetando el stock disponible.
  *
  * Permite eliminar productos individualmente
- * o vaciar completamente el carrito con confirmación.
+ * o vaciar el carrito con confirmación.
  *
- * Calcula automáticamente el total de la compra.
+ * Conserva el botón Finalizar compra
+ * que navega a /checkout.
  *
- * Incorpora el botón Finalizar compra, que utiliza
- * Link de React Router para navegar a /checkout
- * sin recargar completamente la página.
- *
- * El botón solamente aparece cuando el carrito
- * contiene productos.
- *
- * La confirmación definitiva del pedido
- * se implementará en los siguientes pasos.
+ * La función compartida permite mantener
+ * consistentes los cálculos de precios
+ * entre las distintas páginas del sitio.
  */

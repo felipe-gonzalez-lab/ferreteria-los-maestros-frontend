@@ -14,42 +14,103 @@ import Registro from './pages/Registro'
 import Login from './pages/Login'
 import Checkout from './pages/Checkout'
 import CompraExitosa from './pages/CompraExitosa'
+import CompraFallida from './pages/CompraFallida'
+import Ofertas from './pages/Ofertas'
 import productosIniciales from './data/productos.json'
 
-function App() {
-  const [productos, setProductos] = useState(() => {
-    try {
-      const productosGuardados = localStorage.getItem('productosFerreteria')
+function recuperarProductos() {
+  try {
+    const productosGuardados = localStorage.getItem('productosFerreteria')
 
-      if (productosGuardados !== null) {
-        const productosRecuperados = JSON.parse(productosGuardados)
+    if (productosGuardados !== null) {
+      const productosRecuperados = JSON.parse(productosGuardados)
 
-        if (Array.isArray(productosRecuperados)) {
-          return productosRecuperados
-        }
+      if (Array.isArray(productosRecuperados)) {
+        return productosRecuperados.map((producto) => {
+          const productoOriginal = productosIniciales.find(
+            (item) => item.codigo === producto.codigo
+          )
+
+          return {
+            ...producto,
+            descuento:
+              producto.descuento !== undefined
+                ? producto.descuento
+                : productoOriginal?.descuento ?? 0
+          }
+        })
       }
-
-      return productosIniciales
-    } catch {
-      return productosIniciales
     }
-  })
 
-  const [carrito, setCarrito] = useState(() => {
-    try {
-      const carritoGuardado = localStorage.getItem('carritoFerreteria')
-      return carritoGuardado ? JSON.parse(carritoGuardado) : []
-    } catch {
+    return productosIniciales
+  } catch {
+    return productosIniciales
+  }
+}
+
+function recuperarCarrito(productos) {
+  try {
+    const carritoGuardado = localStorage.getItem('carritoFerreteria')
+
+    if (!carritoGuardado) {
       return []
     }
-  })
+
+    const carritoRecuperado = JSON.parse(carritoGuardado)
+
+    if (!Array.isArray(carritoRecuperado)) {
+      return []
+    }
+
+    return carritoRecuperado
+      .map((itemCarrito) => {
+        const productoActual = productos.find(
+          (producto) => producto.codigo === itemCarrito.codigo
+        )
+
+        if (!productoActual || productoActual.stock <= 0) {
+          return null
+        }
+
+        const cantidadGuardada = Number(itemCarrito.cantidad)
+
+        if (!Number.isInteger(cantidadGuardada) || cantidadGuardada < 1) {
+          return null
+        }
+
+        return {
+          ...productoActual,
+          cantidad: Math.min(
+            cantidadGuardada,
+            productoActual.stock
+          )
+        }
+      })
+      .filter((producto) => producto !== null)
+  } catch {
+    return []
+  }
+}
+
+function App() {
+  const [productos, setProductos] = useState(recuperarProductos)
+
+  const [carrito, setCarrito] = useState(() =>
+    recuperarCarrito(productos)
+  )
 
   useEffect(() => {
-    localStorage.setItem('productosFerreteria', JSON.stringify(productos))
+    localStorage.setItem(
+      'productosFerreteria',
+      JSON.stringify(productos)
+    )
   }, [productos])
 
   useEffect(() => {
-    localStorage.setItem('carritoFerreteria', JSON.stringify(carrito))
+    localStorage.setItem(
+      'carritoFerreteria',
+      JSON.stringify(carrito)
+    )
   }, [carrito])
 
   const agregarProducto = (nuevoProducto) => {
@@ -63,7 +124,10 @@ function App() {
 
     setProductos((productosActuales) => [
       ...productosActuales,
-      nuevoProducto
+      {
+        ...nuevoProducto,
+        descuento: nuevoProducto.descuento ?? 0
+      }
     ])
 
     return true
@@ -73,7 +137,14 @@ function App() {
     setProductos((productosActuales) =>
       productosActuales.map((producto) =>
         producto.codigo === productoActualizado.codigo
-          ? productoActualizado
+          ? {
+              ...producto,
+              ...productoActualizado,
+              descuento:
+                productoActualizado.descuento ??
+                producto.descuento ??
+                0
+            }
           : producto
       )
     )
@@ -90,7 +161,12 @@ function App() {
           }
 
           return {
+            ...producto,
             ...productoActualizado,
+            descuento:
+              productoActualizado.descuento ??
+              producto.descuento ??
+              0,
             cantidad: Math.min(
               producto.cantidad,
               productoActualizado.stock
@@ -116,34 +192,49 @@ function App() {
   }
 
   const agregarAlCarrito = (producto) => {
+    const productoActual = productos.find(
+      (item) => item.codigo === producto.codigo
+    )
+
+    if (!productoActual || productoActual.stock <= 0) {
+      return
+    }
+
     setCarrito((carritoActual) => {
       const productoExistente = carritoActual.find(
-        (item) => item.codigo === producto.codigo
+        (item) => item.codigo === productoActual.codigo
       )
 
       if (productoExistente) {
-        if (productoExistente.cantidad >= producto.stock) {
+        if (productoExistente.cantidad >= productoActual.stock) {
           return carritoActual
         }
 
         return carritoActual.map((item) =>
-          item.codigo === producto.codigo
-            ? { ...item, cantidad: item.cantidad + 1 }
+          item.codigo === productoActual.codigo
+            ? {
+                ...productoActual,
+                cantidad: item.cantidad + 1
+              }
             : item
         )
       }
 
-      if (producto.stock <= 0) {
-        return carritoActual
-      }
-
-      return [...carritoActual, { ...producto, cantidad: 1 }]
+      return [
+        ...carritoActual,
+        {
+          ...productoActual,
+          cantidad: 1
+        }
+      ]
     })
   }
 
   const eliminarDelCarrito = (codigo) => {
     setCarrito((carritoActual) =>
-      carritoActual.filter((producto) => producto.codigo !== codigo)
+      carritoActual.filter(
+        (producto) => producto.codigo !== codigo
+      )
     )
   }
 
@@ -160,11 +251,17 @@ function App() {
 
         const nuevaCantidad = producto.cantidad + cambio
 
-        if (nuevaCantidad < 1 || nuevaCantidad > producto.stock) {
+        if (
+          nuevaCantidad < 1 ||
+          nuevaCantidad > producto.stock
+        ) {
           return producto
         }
 
-        return { ...producto, cantidad: nuevaCantidad }
+        return {
+          ...producto,
+          cantidad: nuevaCantidad
+        }
       })
     )
   }
@@ -217,7 +314,10 @@ function App() {
         <Navegacion carrito={carrito} />
 
         <Routes>
-          <Route path="/" element={<Inicio />} />
+          <Route
+            path="/"
+            element={<Inicio />}
+          />
 
           <Route
             path="/productos"
@@ -226,6 +326,13 @@ function App() {
                 productos={productos}
                 agregarAlCarrito={agregarAlCarrito}
               />
+            }
+          />
+
+          <Route
+            path="/ofertas"
+            element={
+              <Ofertas productos={productos} />
             }
           />
 
@@ -253,9 +360,15 @@ function App() {
             }
           />
 
-          <Route path="/registro" element={<Registro />} />
+          <Route
+            path="/registro"
+            element={<Registro />}
+          />
 
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/login"
+            element={<Login />}
+          />
 
           <Route
             path="/checkout"
@@ -271,6 +384,11 @@ function App() {
             path="/compra-exitosa"
             element={<CompraExitosa />}
           />
+
+          <Route
+            path="/compra-fallida"
+            element={<CompraFallida />}
+          />
         </Routes>
 
         <PiePagina />
@@ -284,41 +402,62 @@ export default App
 /*
  * App.jsx - Componente principal de Ferretería Los Maestros.
  *
- * Organiza la estructura general del sitio web mediante
- * React Router, componentes y diferentes páginas.
+ * Organiza las páginas de la aplicación
+ * utilizando React Router.
  *
- * Administra los estados de productos y carrito.
+ * Administra el catálogo de productos
+ * y el carrito mediante useState.
  *
- * Implementa las operaciones CRUD de productos:
- * agregar, consultar, actualizar y eliminar.
+ * recuperarProductos obtiene el catálogo
+ * guardado en localStorage.
  *
- * Mantiene sincronizada la información del catálogo
- * con los productos que se encuentran en el carrito.
+ * Cuando un producto antiguo no tiene descuento,
+ * recupera el valor inicial desde productos.json.
  *
- * Los productos y el carrito utilizan localStorage
- * para conservar sus datos al recargar la aplicación.
+ * recuperarCarrito obtiene los productos guardados
+ * y los sincroniza con el catálogo actualizado.
  *
- * Incorpora las páginas de registro de usuarios,
- * inicio de sesión de demostración y checkout.
+ * La sincronización permite recuperar precios,
+ * descuentos y stock vigentes al recargar la página.
  *
- * La función confirmarPedido recibe los datos
- * del formulario de checkout.
+ * Si un producto fue eliminado del catálogo
+ * o ya no tiene stock, se retira del carrito.
  *
- * Registra cada pedido simulado en localStorage,
- * asignándole un identificador, una fecha y un estado.
+ * Si la cantidad guardada supera el stock,
+ * se ajusta a la disponibilidad actual.
  *
- * También guarda el último pedido confirmado
- * para mostrar posteriormente su resumen.
+ * Conserva las operaciones CRUD de productos:
+ * agregar, actualizar y eliminar.
  *
- * Si el pedido se registra correctamente,
- * se vacía el carrito de compras.
+ * Cuando se edita un producto desde el administrador,
+ * se actualiza también su información en el carrito.
  *
- * Incorpora la ruta /compra-exitosa para mostrar
- * los datos del último pedido registrado.
+ * agregarAlCarrito utiliza los datos más recientes
+ * del catálogo y respeta el stock disponible.
  *
- * La navegación automática hacia esa página
- * se implementará desde Checkout.jsx.
+ * El carrito permite agregar y eliminar productos,
+ * modificar cantidades y vaciar su contenido.
  *
- * No se procesan pagos reales ni se envían
- * pedidos a un servidor.
+ * Los cambios del catálogo y del carrito
+ * se conservan mediante localStorage.
+ *
+ * Incorpora las páginas de registro,
+ * inicio de sesión y administración de productos.
+ *
+ * Incluye las páginas de Ofertas,
+ * Checkout, Compra exitosa y Compra fallida.
+ *
+ * confirmarPedido registra pedidos simulados
+ * y guarda el último pedido confirmado.
+ *
+ * El carrito se vacía después de registrar
+ * correctamente el pedido.
+ *
+ * Los descuentos se calculan actualmente
+ * en los componentes de presentación y compra.
+ *
+ * Posteriormente se centralizará ese cálculo
+ * para mantener una única regla de precios.
+ *
+ * No realiza pagos reales ni utiliza un servidor.
  */

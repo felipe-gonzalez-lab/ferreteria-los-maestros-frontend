@@ -11,6 +11,7 @@ const formularioVacio = {
   unidad: '',
   precioCompra: '',
   precioVenta: '',
+  descuento: 0,
   stock: '',
   stockMinimo: ''
 }
@@ -25,7 +26,10 @@ function FormularioProducto({
 
   useEffect(() => {
     if (productoSeleccionado) {
-      setFormulario({ ...productoSeleccionado })
+      setFormulario({
+        ...productoSeleccionado,
+        descuento: productoSeleccionado.descuento ?? 0
+      })
     } else {
       setFormulario({ ...formularioVacio })
     }
@@ -43,6 +47,17 @@ function FormularioProducto({
   const manejarEnvio = (evento) => {
     evento.preventDefault()
 
+    const descuento = Number(formulario.descuento)
+
+    if (
+      !Number.isFinite(descuento) ||
+      descuento < 0 ||
+      descuento > 100
+    ) {
+      alert('El descuento debe estar entre 0% y 100%.')
+      return
+    }
+
     const productoFormulario = {
       ...formulario,
       codigo: productoSeleccionado
@@ -51,6 +66,7 @@ function FormularioProducto({
       nombre: formulario.nombre.trim(),
       precioCompra: Number(formulario.precioCompra),
       precioVenta: Number(formulario.precioVenta),
+      descuento,
       stock: Number(formulario.stock),
       stockMinimo: Number(formulario.stockMinimo)
     }
@@ -167,6 +183,7 @@ function FormularioProducto({
             name="precioCompra"
             type="number"
             min="0"
+            step="1"
             className="form-control"
             value={formulario.precioCompra}
             onChange={actualizarCampo}
@@ -181,11 +198,33 @@ function FormularioProducto({
             name="precioVenta"
             type="number"
             min="0"
+            step="1"
             className="form-control"
             value={formulario.precioVenta}
             onChange={actualizarCampo}
             required
           />
+        </div>
+
+        <div className="col-md-3">
+          <label htmlFor="descuento" className="form-label">
+            Descuento (%)
+          </label>
+          <input
+            id="descuento"
+            name="descuento"
+            type="number"
+            min="0"
+            max="100"
+            step="1"
+            className="form-control"
+            value={formulario.descuento}
+            onChange={actualizarCampo}
+            required
+          />
+          <div className="form-text">
+            0 significa sin descuento.
+          </div>
         </div>
 
         <div className="col-md-3">
@@ -195,6 +234,7 @@ function FormularioProducto({
             name="stock"
             type="number"
             min="0"
+            step="1"
             className="form-control"
             value={formulario.stock}
             onChange={actualizarCampo}
@@ -209,6 +249,7 @@ function FormularioProducto({
             name="stockMinimo"
             type="number"
             min="0"
+            step="1"
             className="form-control"
             value={formulario.stockMinimo}
             onChange={actualizarCampo}
@@ -235,3 +276,39 @@ function FormularioProducto({
 }
 
 export default FormularioProducto
+
+/*
+ * FormularioProducto.jsx - Formulario de administración.
+ *
+ * Permite agregar nuevos productos y editar
+ * productos existentes del catálogo.
+ *
+ * Utiliza useState para manejar los campos
+ * y useEffect para cargar el producto seleccionado.
+ *
+ * Mantiene las categorías definidas en categorias.json.
+ *
+ * Incorpora el campo Descuento (%), que permite
+ * configurar porcentajes entre cero y cien.
+ *
+ * Un descuento de cero indica que el producto
+ * se vende a su precio normal.
+ *
+ * Valida el porcentaje antes de guardar el producto.
+ *
+ * Convierte precios, descuento y cantidades
+ * a valores numéricos.
+ *
+ * Conserva las validaciones del formulario
+ * y la comprobación de códigos duplicados.
+ *
+ * Utiliza agregarProducto y actualizarProducto
+ * recibidas desde App.jsx.
+ *
+ * Los descuentos quedan almacenados en el
+ * catálogo administrado mediante localStorage.
+ *
+ * Los productos con descuentos válidos aparecerán
+ * automáticamente en la página Ofertas,
+ * siempre que tengan stock disponible.
+ */

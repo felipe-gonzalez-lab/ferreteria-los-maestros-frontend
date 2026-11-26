@@ -21,6 +21,10 @@ function Navegacion({ carrito }) {
             Productos
           </NavLink>
 
+          <NavLink className="nav-link" to="/ofertas">
+            Ofertas
+          </NavLink>
+
           <NavLink className="nav-link" to="/nosotros">
             Nosotros
           </NavLink>
@@ -62,6 +66,9 @@ export default Navegacion
  * completamente la página y reconocer la ruta activa.
  *
  * Muestra la cantidad total de unidades agregadas al carrito.
+ *
+ * Incorpora el enlace Ofertas, que permite acceder
+ * a los productos que tengan descuentos configurados.
  *
  * Incorpora el enlace Registrarse, que permite acceder
  * al formulario de registro de usuarios.
