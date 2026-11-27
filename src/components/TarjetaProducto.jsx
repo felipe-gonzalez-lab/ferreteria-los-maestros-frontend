@@ -1,8 +1,13 @@
 
+import { useState } from 'react'
 import BadgeStock from './BadgeStock'
 import { calcularPrecioFinal } from '../utils/precios'
 
 function TarjetaProducto({ producto, agregarAlCarrito }) {
+  const [imagenDisponible, setImagenDisponible] = useState(true)
+
+  const rutaImagen = `${import.meta.env.BASE_URL}imagenes/productos/${producto.codigo}.jpg`
+
   const descuento = Number(producto.descuento) || 0
 
   const tieneDescuento =
@@ -13,6 +18,23 @@ function TarjetaProducto({ producto, agregarAlCarrito }) {
   return (
     <div className="col-12 col-md-6 col-lg-4">
       <div className="card h-100">
+
+        <div className="contenedor-imagen-producto">
+          {imagenDisponible ? (
+            <img
+              src={rutaImagen}
+              alt={producto.nombre}
+              className="imagen-producto"
+              loading="lazy"
+              onError={() => setImagenDisponible(false)}
+            />
+          ) : (
+            <div className="imagen-no-disponible">
+              Imagen no disponible
+            </div>
+          )}
+        </div>
+
         <div className="card-body d-flex flex-column">
           {tieneDescuento && (
             <span className="badge bg-danger align-self-start mb-3">
@@ -85,6 +107,24 @@ export default TarjetaProducto
  * TarjetaProducto.jsx - Tarjeta individual del catálogo.
  *
  * Recibe los datos del producto mediante props.
+ *
+ * Construye automáticamente la ruta de la imagen
+ * utilizando el código único de cada producto.
+ *
+ * BASE_URL permite respetar la ruta base del
+ * proyecto configurada en Vite.
+ *
+ * Las imágenes se almacenan en la carpeta
+ * public/imagenes/productos en formato JPG.
+ *
+ * Utiliza useState para controlar la disponibilidad
+ * de la imagen correspondiente al producto.
+ *
+ * Si la imagen no existe o no puede cargarse,
+ * muestra el mensaje Imagen no disponible.
+ *
+ * Utiliza loading="lazy" para cargar las imágenes
+ * cuando se aproximan al área visible del navegador.
  *
  * Muestra nombre, código, marca, precio y stock.
  *

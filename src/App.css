@@ -1,4 +1,65 @@
 
 /* Estilos de componentes - Ferretería Los Maestros */
 
-/* Los componentes tendrán sus propios estilos cuando sea necesario. */
+/* ========================================
+   IMÁGENES DEL CATÁLOGO DE PRODUCTOS
+   ======================================== */
+
+.contenedor-imagen-producto {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 15px;
+  border-radius: 5px 5px 0 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.imagen-producto {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.imagen-no-disponible {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+  color: #6c757d;
+  font-size: 0.9rem;
+  text-align: center;
+  border-radius: 5px;
+}
+
+/*
+ * App.css - Estilos personalizados de los componentes.
+ *
+ * Complementa los estilos proporcionados por Bootstrap.
+ *
+ * contenedor-imagen-producto establece un espacio
+ * uniforme con una proporción de 4:3.
+ *
+ * Flexbox permite centrar las imágenes horizontal
+ * y verticalmente dentro de su contenedor.
+ *
+ * object-fit: contain permite visualizar el producto
+ * completo sin deformar ni recortar la imagen original.
+ *
+ * object-position: center mantiene la imagen centrada.
+ *
+ * El padding genera una separación entre la imagen
+ * y los bordes de la tarjeta.
+ *
+ * imagen-no-disponible mantiene el mismo espacio visual
+ * cuando un producto todavía no tiene una fotografía.
+ *
+ * Las dimensiones se adaptan al ancho disponible,
+ * conservando el diseño responsivo de Bootstrap.
+ */
